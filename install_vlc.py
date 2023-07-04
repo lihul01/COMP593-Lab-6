@@ -1,5 +1,5 @@
 import requests
-import re
+import hashlib
 
 def main():
 
@@ -54,10 +54,9 @@ def download_installer():
 
     # Verify download and return installer data
     if resp_msg.status_code == requests.codes.ok:
-
-        file_content = resp_msg.content
-
-    return file_content
+        return resp_msg.content
+    else:
+        return
 
 def installer_ok(installer_data, expected_sha256):
     """Verifies the integrity of the downloaded VLC installer file by calculating its SHA-256 hash value 
@@ -70,9 +69,11 @@ def installer_ok(installer_data, expected_sha256):
     Returns:
         bool: True if SHA-256 of VLC installer matches expected SHA-256. False if not.
     """    
-    # TODO: Step 3
-    # Hint: See example code in lab instructions entitled "Computing the Hash Value of a Response Message Body"
-    return
+    # Compare hash value of downloaded file to expected hash returning True if they match and False if they don't
+    if hashlib.sha256(installer_data).hexdigest() == expected_sha256:
+        return True
+    else:
+        return False
 
 def save_installer(installer_data):
     """Saves the VLC installer to a local directory.
