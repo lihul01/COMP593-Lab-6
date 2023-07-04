@@ -14,7 +14,7 @@ def main():
     # Verify the integrity of the downloaded VLC installer by comparing the
     # expected and computed SHA-256 hash values
     if installer_ok(installer_data, expected_sha256):
-
+        print('Success')
         # Save the downloaded VLC installer to disk
         installer_path = save_installer(installer_data)
 
@@ -72,7 +72,7 @@ def installer_ok(installer_data, expected_sha256):
         bool: True if SHA-256 of VLC installer matches expected SHA-256. False if not.
     """    
     # Compare hash value of downloaded file to expected hash returning True if they match and False if they don't
-    if hashlib.sha256(installer_data).hexdigest() == expected_sha256:
+    if hashlib.sha256(installer_data).hexdigest() == expected_sha256[0]:
         return True
     else:
         return False
@@ -87,7 +87,6 @@ def save_installer(installer_data):
         str: Full path of the saved VLC installer file
     """
     # Saves installer to temp directory and returns full path as a string
-    
     with open(os.getenv('TEMP'), 'wb') as file:
         file.write(installer_data)
               
