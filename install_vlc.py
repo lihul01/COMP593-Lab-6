@@ -14,7 +14,7 @@ def main():
     # Verify the integrity of the downloaded VLC installer by comparing the
     # expected and computed SHA-256 hash values
     if installer_ok(installer_data, expected_sha256):
-        print('Success')
+        
         # Save the downloaded VLC installer to disk
         installer_path = save_installer(installer_data)
 
@@ -87,10 +87,11 @@ def save_installer(installer_data):
         str: Full path of the saved VLC installer file
     """
     # Saves installer to temp directory and returns full path as a string
-    with open(os.getenv('TEMP'), 'wb') as file:
+    path = r'C:\temp\VLC.exe'
+    with open(path, 'wb') as file:
         file.write(installer_data)
               
-    return os.getenv('TEMP')
+    return path
 
 def run_installer(installer_path):
     """Silently runs the VLC installer.
