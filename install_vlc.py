@@ -1,5 +1,6 @@
 import requests
 import hashlib
+import re
 
 def main():
 
@@ -84,9 +85,11 @@ def save_installer(installer_data):
     Returns:
         str: Full path of the saved VLC installer file
     """
-    # TODO: Step 4
-    # Hint: See example code in lab instructions entitled "Downloading a Binary File"
-    return
+    # Saves installer to temp directory and returns full path as a string
+    with open(r'C:\temp\VLC.exe', 'wb') as file:
+        file.write(installer_data)
+              
+    return r'C:\temp\VLC.exe'
 
 def run_installer(installer_path):
     """Silently runs the VLC installer.
