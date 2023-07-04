@@ -1,6 +1,6 @@
 import requests
 import hashlib
-import re
+import os
 
 def main():
 
@@ -86,10 +86,11 @@ def save_installer(installer_data):
         str: Full path of the saved VLC installer file
     """
     # Saves installer to temp directory and returns full path as a string
-    with open(r'C:\temp\VLC.exe', 'wb') as file:
+    
+    with open(os.getenv('TEMP'), 'wb') as file:
         file.write(installer_data)
               
-    return r'C:\temp\VLC.exe'
+    return os.getenv('TEMP')
 
 def run_installer(installer_path):
     """Silently runs the VLC installer.
