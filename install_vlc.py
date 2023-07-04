@@ -1,6 +1,7 @@
 import requests
 import hashlib
 import os
+import subprocess
 
 def main():
 
@@ -98,18 +99,18 @@ def run_installer(installer_path):
     Args:
         installer_path (str): Full path of the VLC installer file
     """    
-    # TODO: Step 5
-    # Hint: See example code in lab instructions entitled "Running the VLC Installer"
+    subprocess.run([installer_path, '/L=1033', '/S'])
+
     return
     
 def delete_installer(installer_path):
-    # TODO: Step 6
-    # Hint: See example code in lab instructions entitled "Running the VLC Installer"
     """Deletes the VLC installer file.
 
     Args:
         installer_path (str): Full path of the VLC installer file
     """
+    os.remove(installer_path)
+
     return
 
 if __name__ == '__main__':
