@@ -88,6 +88,7 @@ def save_installer(installer_data):
     """
     # Saves installer to temp directory and returns full path as a string
     path = r'C:\temp\VLC.exe'
+    
     with open(path, 'wb') as file:
         file.write(installer_data)
               
